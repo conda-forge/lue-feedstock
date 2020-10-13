@@ -12,7 +12,7 @@ source:
 
 
 build:
-  number: 1
+  number: 2
 
   ignore_run_exports:
     - fmt
@@ -31,10 +31,8 @@ requirements:
 
   host:
     - python
-    # TODO: Remove version number later, try to force this only for staging
-    - numpy 1.16
-    # TODO: Remove version number later, try to force this only for staging
-    - boost-cpp >=1.72.0
+    - numpy
+    - boost-cpp
     - hdf5
     - libgdal
     - sdl2
