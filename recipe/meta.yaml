@@ -72,7 +72,7 @@ about:
 
     The LUE Python package is currently in development.
   doc_url: https://lue.computationalgeography.org/doc/
-  dev_url: https://github.com/pcraster/lue
+  dev_url: https://github.com/computationalgeography/lue.git
 
 
 extra:
