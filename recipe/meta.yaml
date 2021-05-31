@@ -8,7 +8,7 @@ package:
 
 source:
   url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: fbadf957fc3e3009be1d51abf47f3b2a4bd87f29241dc933c1ef88bfbd9462af
+  sha256: 9cdff317306337151c71e2e53deb50a7b118ff8827b1461be447118275647c92
 
 
 build:
@@ -36,7 +36,6 @@ requirements:
     - hdf5
     - libgdal
     - sdl2
-    - pybind11
     - fmt
     - xorg-libxfixes                               # [linux]
     - glew
