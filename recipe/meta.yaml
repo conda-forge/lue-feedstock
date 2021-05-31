@@ -8,11 +8,11 @@ package:
 
 source:
   url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 1353cf97c99ec909212c06e4e12c08c23fda9c50e8708fb27ab893cc5c573bbe
+  sha256: 9cdff317306337151c71e2e53deb50a7b118ff8827b1461be447118275647c92
 
 
 build:
-  number: 5
+  number: 6
 
   ignore_run_exports:
     - fmt
@@ -36,7 +36,6 @@ requirements:
     - hdf5
     - libgdal
     - sdl2
-    - pybind11
     - fmt
     - xorg-libxfixes                               # [linux]
     - glew
@@ -60,7 +59,7 @@ about:
   home: https://lue.computationalgeography.org/
   license: MIT
   license_file: LICENSE.txt
-  summary: 'Scientific database and environmental modelling framework.'
+  summary: Scientific database and environmental modelling framework.
   description: |
     The LUE Python package allows you to perform I/O to the LUE Scientific Database,
     which is an HDF5 binary data format.
