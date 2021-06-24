@@ -11,7 +11,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '11'
 fmt:
-- '7'
+- '8'
 glew:
 - '2.1'
 hdf5:
