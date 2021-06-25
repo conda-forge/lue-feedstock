@@ -8,11 +8,11 @@ package:
 
 source:
   url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 9cdff317306337151c71e2e53deb50a7b118ff8827b1461be447118275647c92
+  sha256: cf073b3786a87c9f1677d362726f6994b1aaafc35192c6ea88ebd75ee16f35d7
 
 
 build:
-  number: 6
+  number: 7
 
   ignore_run_exports:
     - fmt
@@ -47,6 +47,7 @@ requirements:
     - hdf5
     - libgdal
     - sdl2
+    - fmt
 
 
 test:
