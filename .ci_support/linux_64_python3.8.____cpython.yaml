@@ -3,7 +3,7 @@ boost_cpp:
 cdt_name:
 - cos6
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -17,7 +17,7 @@ fmt:
 glew:
 - '2.1'
 hdf5:
-- 1.10.6
+- 1.12.1
 libgdal:
 - '3.3'
 pin_run_as_build:
