@@ -20,6 +20,8 @@ hdf5:
 - 1.12.1
 libgdal:
 - '3.3'
+numpy:
+- '1.19'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
@@ -37,3 +39,5 @@ target_platform:
 zip_keys:
 - - cdt_name
   - docker_image
+- - python
+  - numpy
