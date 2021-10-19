@@ -42,7 +42,7 @@ cmake $SRC_DIR -G"Ninja" \
 -D HPX_WITH_TESTS=OFF
 
 
-cmake --build . --target all
+cmake --build . --target all --parallel 1
 
 ctest --output-on-failure
 
