@@ -8,7 +8,7 @@ package:
 
 source:
   url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 01108e6730ce1c2ed26943d3e1ce004eb410a434df4f4d38b774ddfc9d76b8f0
+  sha256: af5d9382e6d54b55a25dbfac2dd1d0215b4442c0c496c88e29ed5e2d9b939bf1
 
 
 build:
