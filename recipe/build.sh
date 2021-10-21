@@ -16,7 +16,7 @@ cmake $SRC_DIR -G"Ninja" \
 -D CMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
 -D LUE_HAVE_BOOST:BOOL=TRUE \
 -D LUE_HAVE_FMT:BOOL=TRUE \
--D LUE_HAVE_PYBIND11:BOOL=FALSE \
+-D LUE_HAVE_PYBIND11:BOOL=TRUE \
 -D LUE_HAVE_HDF5:BOOL=TRUE \
 -D LUE_HAVE_GDAL:BOOL=TRUE \
 -D LUE_HAVE_DOCOPT:BOOL=TRUE \
@@ -24,11 +24,7 @@ cmake $SRC_DIR -G"Ninja" \
 -D LUE_HAVE_GLFW:BOOL=TRUE \
 -D LUE_HAVE_MS_GSL:BOOL=FALSE \
 -D LUE_HAVE_NLOHMANN_JSON:BOOL=TRUE \
--D Python_ROOT_DIR="${PREFIX}/bin" \
--D Python3_FIND_STRATEGY="LOCATION" \
 -D Python3_EXECUTABLE="${PYTHON}" \
--D PYTHON_EXECUTABLE="${PYTHON}" \
--D Python3_ROOT_DIR="${PREFIX}/bin" \
 -D LUE_DATA_MODEL_WITH_PYTHON_API=ON \
 -D LUE_DATA_MODEL_WITH_UTILITIES=ON \
 -D LUE_BUILD_VIEW=ON \
@@ -42,9 +38,11 @@ cmake $SRC_DIR -G"Ninja" \
 -D HPX_WITH_EXAMPLES=OFF \
 -D HPX_WITH_TESTS=OFF
 
+# Use parallel build but not for lue.framework
+cmake --build . --target lue_view lue_translate lue_validate core
 
 cmake --build . --target all --parallel 1
 
 ctest --output-on-failure
 
-cmake --build . --target install
+cmake --install .
