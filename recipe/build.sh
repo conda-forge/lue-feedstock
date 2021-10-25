@@ -9,6 +9,8 @@ mkdir -p build && cd build
 
 
 cmake $SRC_DIR -G"Ninja" \
+-D CMAKE_C_COMPILER=${CC} \
+-D CMAKE_CXX_COMPILER=${CXX} \
 -D CMAKE_BUILD_TYPE=Release \
 -D CMAKE_PREFIX_PATH:PATH="${PREFIX}" \
 -D CMAKE_INSTALL_PREFIX:PATH="${PREFIX}" \
@@ -23,7 +25,6 @@ cmake $SRC_DIR -G"Ninja" \
 -D LUE_HAVE_GLFW:BOOL=TRUE \
 -D LUE_HAVE_MS_GSL:BOOL=FALSE \
 -D LUE_HAVE_NLOHMANN_JSON:BOOL=TRUE \
--D Python3_EXECUTABLE="${PYTHON}" \
 -D LUE_DATA_MODEL_WITH_PYTHON_API=ON \
 -D LUE_DATA_MODEL_WITH_UTILITIES=ON \
 -D LUE_BUILD_VIEW=ON \
@@ -42,6 +43,6 @@ cmake --build . --target lue_view lue_translate lue_validate core
 
 cmake --build . --target all --parallel 1
 
-ctest --output-on-failure
+ctest --extra-verbose --output-on-failure
 
 cmake --install .
