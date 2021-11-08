@@ -44,6 +44,10 @@ cmake --build . --target lue_view lue_translate lue_validate core
 
 cmake --build . --target all --parallel 1
 
+ldd bin/lue_py_data_model_python_test
+ldd bin/lue_py_framework_python_test
+
+
 ctest --extra-verbose --output-on-failure
 
 cmake --install .
