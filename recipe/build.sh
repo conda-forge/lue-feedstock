@@ -40,7 +40,9 @@ cmake $SRC_DIR -G"Ninja" \
 -D HPX_WITH_TESTS=OFF
 
 # Use parallel build but not for lue.framework
-cmake --build . --target lue_view lue_translate lue_validate core lue_py_data_model_python_test lue_py_framework_python_test
+cmake --build . --target lue_view lue_translate lue_validate core
+
+cmake --build . --target lue_py_data_model_python_test lue_py_framework_python_test --parallel 1
 
 ldd $SRC_DIR/build/source/data_model/python/test/lue_py_data_model_python_test
 ldd $SRC_DIR/build/source/framework/python/test/lue_py_framework_python_test
