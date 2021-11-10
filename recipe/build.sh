@@ -42,12 +42,9 @@ cmake $SRC_DIR -G"Ninja" \
 # Use parallel build but not for lue.framework
 cmake --build . --target lue_view lue_translate lue_validate core
 
-cmake --build . --target lue_py_data_model_python_test lue_py_framework_python_test --parallel 1
-
-ldd $SRC_DIR/build/source/data_model/python/test/lue_py_data_model_python_test
-ldd $SRC_DIR/build/source/framework/python/test/lue_py_framework_python_test
-
 cmake --build . --target all --parallel 1
+
+export LD_PRELOAD=${PREFIX}/lib/libtcmalloc_minimal.so.4
 
 ctest --extra-verbose --output-on-failure
 
