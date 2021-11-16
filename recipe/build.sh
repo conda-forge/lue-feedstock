@@ -7,8 +7,6 @@ cd $SRC_DIR
 
 mkdir -p build && cd build
 
-# -D CMAKE_C_COMPILER=${CC} \
-# -D CMAKE_CXX_COMPILER=${CXX} \
 
 cmake $SRC_DIR -G"Ninja" \
 -D CMAKE_BUILD_TYPE=Release \
@@ -18,7 +16,7 @@ cmake $SRC_DIR -G"Ninja" \
 -D Python3_EXECUTABLE="${PYTHON}" \
 -D LUE_HAVE_BOOST:BOOL=TRUE \
 -D LUE_HAVE_FMT:BOOL=TRUE \
--D LUE_HAVE_PYBIND11:BOOL=FALSE \
+-D LUE_HAVE_PYBIND11:BOOL=TRUE \
 -D LUE_HAVE_HDF5:BOOL=TRUE \
 -D LUE_HAVE_GDAL:BOOL=TRUE \
 -D LUE_HAVE_DOCOPT:BOOL=TRUE \
@@ -43,8 +41,6 @@ cmake $SRC_DIR -G"Ninja" \
 cmake --build . --target lue_view lue_translate lue_validate core
 
 cmake --build . --target all --parallel 1
-
-#export LD_PRELOAD=${PREFIX}/lib/libtcmalloc_minimal.so.4
 
 ctest --extra-verbose --output-on-failure
 
