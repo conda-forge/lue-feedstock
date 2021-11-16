@@ -18,7 +18,7 @@ cmake $SRC_DIR -G"Ninja" \
 -D Python3_EXECUTABLE="${PYTHON}" \
 -D LUE_HAVE_BOOST:BOOL=TRUE \
 -D LUE_HAVE_FMT:BOOL=TRUE \
--D LUE_HAVE_PYBIND11:BOOL=TRUE \
+-D LUE_HAVE_PYBIND11:BOOL=FALSE \
 -D LUE_HAVE_HDF5:BOOL=TRUE \
 -D LUE_HAVE_GDAL:BOOL=TRUE \
 -D LUE_HAVE_DOCOPT:BOOL=TRUE \
@@ -34,7 +34,7 @@ cmake $SRC_DIR -G"Ninja" \
 -D LUE_FRAMEWORK_WITH_PYTHON_API=ON \
 -D LUE_BUILD_HPX=ON \
 -D HPX_USE_CMAKE_CXX_STANDARD=ON \
--D HPX_WITH_MALLOC="tcmalloc" \
+-D HPX_WITH_MALLOC="system" \
 -D HPX_WITH_PKGCONFIG=OFF \
 -D HPX_WITH_EXAMPLES=OFF \
 -D HPX_WITH_TESTS=OFF
@@ -44,7 +44,7 @@ cmake --build . --target lue_view lue_translate lue_validate core
 
 cmake --build . --target all --parallel 1
 
-export LD_PRELOAD=${PREFIX}/lib/libtcmalloc_minimal.so.4
+#export LD_PRELOAD=${PREFIX}/lib/libtcmalloc_minimal.so.4
 
 ctest --extra-verbose --output-on-failure
 
