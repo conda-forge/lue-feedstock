@@ -1,4 +1,4 @@
-{% set version = "0.2.0" %}
+{% set version = "0.3.1" %}
 
 
 package:
@@ -8,11 +8,11 @@ package:
 
 source:
   url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: cf073b3786a87c9f1677d362726f6994b1aaafc35192c6ea88ebd75ee16f35d7
+  sha256: e22d3863ec8a0a11ddb390bc20b1c086fb4c4c3af8641d94fb27bd51d8b370ca
 
 
 build:
-  number: 12
+  number: 0
 
   ignore_run_exports:
     - fmt
@@ -51,9 +51,9 @@ requirements:
 
 
 test:
-    commands:
-       - lue_translate -h
-       - lue_validate -h
+  commands:
+    - lue_translate -h
+    - lue_validate -h
 
 
 about:
