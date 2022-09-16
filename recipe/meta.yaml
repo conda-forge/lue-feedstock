@@ -7,15 +7,15 @@ package:
 
 
 source:
-  url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 6cc0d51864ec3b1a9c6bed6d9425ac5060450d300187ddb3af840b13add8923a
+  url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
+  sha256: 4bc825a81be0bef9d648696fa10eba91da4932b03c1eb22fec94825afa14f052
 
 
 build:
   number: 0
+  script_env:
+    - TMPDIR
 
-  ignore_run_exports:
-    - fmt
 
 requirements:
   build:
@@ -25,54 +25,76 @@ requirements:
     - {{ cdt('libselinux') }}                      # [linux]
     - {{ cdt('libxdamage') }}                      # [linux]
     - {{ cdt('libxxf86vm') }}                      # [linux]
+    - {{ cdt('libxext') }}                         # [linux]
+    - git
     - conan
+    - markupsafe <2.1.0
     - cmake
     - ninja
 
   host:
     - python
-    - numpy >=1.16
+    - numpy >1.17
     - boost-cpp
     - hdf5
     - libgdal
-    - sdl2
+    - pybind11
     - fmt
     - xorg-libxfixes                               # [linux]
-    - glew
+    - docopt.cpp
+    - nlohmann_json
+    - glfw
+    - libhwloc
+    - gperftools                                   # [not win]
+    - asio
 
   run:
     - python
     - {{ pin_compatible('numpy') }}
-    - boost-cpp
     - hdf5
     - libgdal
-    - sdl2
     - fmt
+    - docopt.cpp
+    - glfw
+    - gperftools                                   # [not win]
 
 
 test:
   commands:
-    - lue_translate -h
-    - lue_validate -h
+     - lue_translate -h
+     - lue_validate -h
+     - lue_view -h
 
 
 about:
   home: https://lue.computationalgeography.org/
   license: MIT
   license_file: LICENSE.txt
-  summary: Scientific database and environmental modelling framework.
+  summary: LUE scientific database and environmental modelling framework.
   description: |
-    The LUE Python package allows you to perform I/O to the LUE Scientific Database,
-    which is an HDF5 binary data format.
+    LUE is software for storing and manipulating large amounts of information
+    for large amounts of objects. This information can optionally have a
+    reference in time and space. For example, LUE can represent collections of
+    wandering animals and their properties, some of which are changing through
+    time, or the elevation of the surface of one or multiple areas. The software
+    is useful, and currently mainly used, in the context of environmental
+    modelling of biological and physical systems, represented by agents and
+    fields, but we make sure that the software is as generic as possible,
+    allowing it to be useful in other contexts as well.
 
-    The LUE database lets you efficiently store huge amounts of attribute values of
-    huge amounts of objects. These objects can be located in time and/or in space,
-    and the attribute values can be n-dimensional values. The LUE database is developed
-    to be useful in the domain of agent-based and field-based modeling.
+    Currently, LUE contains two main parts: *LUE data model* and *LUE
+    framework*. LUE data model is an implementation of the LUE physical data
+    model, which allows users to perform I/O to the "LUE Scientific Database".
+    It allows for the storage of large amounts of objects and their location
+    in time and space, and their properties.
 
-    The LUE Python package is currently in development.
+    LUE framework is a collection of data types and algorithms that can be
+    combined to translate large amounts of information. It allows computations
+    to be performed on hardware ranging from laptops to compute clusters,
+    without the user having to know about high-performance computing and
+    the related technology.
   doc_url: https://lue.computationalgeography.org/doc/
-  dev_url: https://github.com/computationalgeography/lue.git
+  dev_url: https://github.com/computationalgeography/lue/
 
 
 extra:
