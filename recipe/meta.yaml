@@ -13,6 +13,7 @@ source:
 
 build:
   number: 0
+  skip: True                                       # [win and py==37]
   script_env:
     - TMPDIR                                       # [win]
 
@@ -64,7 +65,6 @@ test:
     commands:
        - lue_translate -h                          # [not win]
        - lue_validate -h                           # [not win]
-       - lue_view -h                               # [not win]
 
 
 about:
