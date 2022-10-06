@@ -1,4 +1,4 @@
-{% set version = "0.3.3" %}
+{% set version = "0.3.4" %}
 
 
 package:
@@ -8,12 +8,12 @@ package:
 
 source:
   url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 927cd2257f2280feb1610386230730853fcb9ecec0bc307b8bdcccd180c8962c
+  sha256: 1a9f7a96978c3ece448c45615363942edaaf6dd5ee649a3baf5fc4a8ae3faaf3
 
 
 build:
   number: 0
-  skip: True                                       # [win and py==37]
+  skip: true  # [win and py==37]
   script_env:
     - TMPDIR                                       # [win]
 
@@ -62,9 +62,9 @@ requirements:
 
 
 test:
-    commands:
-       - lue_translate -h                          # [not win]
-       - lue_validate -h                           # [not win]
+  commands:
+    - lue_translate -h                             # [not win]
+    - lue_validate -h                              # [not win]
 
 
 about:
