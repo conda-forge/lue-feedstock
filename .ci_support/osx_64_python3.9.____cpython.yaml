@@ -12,8 +12,6 @@ cxx_compiler_version:
 - '14'
 fmt:
 - '9'
-glew:
-- '2.1'
 hdf5:
 - 1.12.2
 libgdal:
@@ -23,10 +21,6 @@ macos_machine:
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
-  glew:
-    max_pin: x.x
-  libgdal:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
