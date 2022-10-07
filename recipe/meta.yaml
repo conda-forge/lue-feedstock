@@ -30,7 +30,6 @@ requirements:
     - make                                         # [unix]
     - git
     - conan
-    - markupsafe <2.1.0
     - cmake
     - ninja
 
@@ -63,8 +62,8 @@ requirements:
 
 test:
   commands:
-    - lue_translate -h                             # [not win]
-    - lue_validate -h                              # [not win]
+    - lue_translate -h
+    - lue_validate -h
 
 
 about:
