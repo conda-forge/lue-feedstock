@@ -38,7 +38,7 @@ PATH=$PREFIX/bin:$PATH CXXFLAGS="${CXXFLAGS} -DTARGET_OS_OSX -D_LIBCPP_DISABLE_A
         -D Python3_EXECUTABLE="${PYTHON}"
 
 # Use parallel build for as many targets as possible, but not for framework/algorithm
-cmake --build . --target source/{data_model,view}/all source/framework/{core,partitioned_array}/all
+cmake ${CMAKE_ARGS} --build . --target source/{data_model,view}/all source/framework/{core,partitioned_array}/all
 
 # Build remaining targets with fewer cores. Compiling these modules requires more memory.
 cmake --build . --target all --parallel 2
