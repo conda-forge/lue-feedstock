@@ -12,7 +12,7 @@ source:
 
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win and py==37]
   script_env:
     - TMPDIR                                       # [win]
@@ -25,12 +25,6 @@ requirements:
     - numpy >1.17                            # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('cxx') }}
-    - {{ cdt('mesa-libgl-devel') }}                # [linux]
-    - {{ cdt('mesa-dri-drivers') }}                # [linux]
-    - {{ cdt('libselinux') }}                      # [linux]
-    - {{ cdt('libxdamage') }}                      # [linux]
-    - {{ cdt('libxxf86vm') }}                      # [linux]
-    - {{ cdt('libxext') }}                         # [linux]
     - make                                         # [unix]
     - git
     - conan
@@ -45,10 +39,8 @@ requirements:
     - libgdal
     - pybind11
     - fmt
-    - xorg-libxfixes                               # [linux]
     - docopt.cpp
     - nlohmann_json
-    - glfw
     - libhwloc
     - gperftools                                   # [not win]
     - asio
@@ -60,7 +52,6 @@ requirements:
     - libgdal
     - fmt
     - docopt.cpp
-    - glfw
     - gperftools                                   # [not win]
 
 
