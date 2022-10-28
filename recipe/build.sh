@@ -42,7 +42,7 @@ cmake $SRC_DIR -G"Ninja" \
     -D Python3_EXECUTABLE="${PYTHON}"
 
 # Use parallel build for as many targets as possible, but not for framework/algorithm
-cmake --build . --target source/{data_model,view}/all source/framework/{core,partitioned_array}/all
+cmake --build . --target source/data_model/all source/framework/{core,partitioned_array}/all
 
 # Build remaining targets with fewer cores. Compiling these modules requires more memory.
 cmake --build . --target all --parallel 2
