@@ -7,12 +7,12 @@ package:
 
 
 source:
-  url: http://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 1a9f7a96978c3ece448c45615363942edaaf6dd5ee649a3baf5fc4a8ae3faaf3
+  url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
+  sha256: 2a0d8bf94b65b0bffa76ea6715ad63d0b439ab55413ff57af3c77c8b06d2d11d
 
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and py==37]
   script_env:
     - TMPDIR                                       # [win]
