@@ -12,7 +12,7 @@ source:
 
 
 build:
-  number: 3
+  number: 2
   skip: true  # [win and py==37]
   script_env:
     - TMPDIR                                       # [win]
