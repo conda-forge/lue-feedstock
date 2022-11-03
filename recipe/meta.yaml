@@ -1,4 +1,4 @@
-{% set version = "0.3.4" %}
+{% set version = "0.3.5" %}
 
 
 package:
@@ -8,11 +8,11 @@ package:
 
 source:
   url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  sha256: 64ad28461f9472d541aa3e0ba97f813650a9b247f90e2f382c99ad678a05c59c
+  sha256: fc82be56ac5269b242a141a9d36aec86cdd3a8f4a5290a21e41ac5b2f543ad8b
 
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win and py==37]
   script_env:
     - TMPDIR                                       # [win]
