@@ -13,9 +13,6 @@ source:
 
 build:
   number: 0
-  skip: true  # [win and py==37]
-  script_env:
-    - TMPDIR                                       # [win]
 
 
 requirements:
@@ -32,7 +29,7 @@ requirements:
     - git
     - conan
     - cmake
-    - ninja                                      # [not win]
+    - ninja
 
   host:
     # Section for the target platform. Might not be the same as the build platform!

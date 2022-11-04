@@ -3,7 +3,7 @@ cd build
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 cmake %SRC_DIR% ^
-    -G "NMake Makefiles" ^
+    -G "Ninja" ^
     -D CMAKE_BUILD_TYPE=Release ^
     -D CMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -D CMAKE_INSTALL_LIBDIR=lib ^
@@ -27,7 +27,7 @@ cmake %SRC_DIR% ^
     -D Python3_EXECUTABLE="%PYTHON%"
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-cmake --build . --config Release --target all_build --parallel 2
+cmake --build . --target all --parallel 2
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 cmake --install . --component lue_runtime
