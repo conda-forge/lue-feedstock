@@ -15,7 +15,7 @@ fmt:
 hdf5:
 - 1.12.2
 libgdal:
-- '3.5'
+- '3.6'
 macos_machine:
 - arm64-apple-darwin20.0.0
 pin_run_as_build:
