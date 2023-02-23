@@ -27,7 +27,7 @@ requirements:
     - {{ compiler('cxx') }}
     - make                                       # [unix]
     - git
-    - conan
+    - conan <2
     - cmake
     - ninja
 
@@ -48,19 +48,23 @@ requirements:
   run:
     # Dependencies required for using the software.
     # Stuff required when using LUE.
-    - python
-    - {{ pin_compatible('numpy') }}
+    - docopt  # lue.qa
+    - docopt.cpp
+    - fmt
     - hdf5
     - hpx
     - libgdal
-    - fmt
-    - docopt.cpp
+    - matplotlib  # lue.qa
+    - {{ pin_compatible('numpy') }}
+    - python
+    - python-dateutil  # lue.qa
 
 
 test:
   commands:
     - lue_translate -h
     - lue_validate -h
+    - lue_scalability -h                      # [not win]
 
 
 about:
@@ -80,7 +84,7 @@ about:
     to improve on the concepts and design of numerical simulation frameworks for geographical
     systems, with respect to their functionality and performance.
 
-    LUE support both agent-based and field-based modelling of geographical systems, with the
+    LUE supports both agent-based and field-based modelling of geographical systems, with the
     support for field-based modelling currently being the most mature.
   doc_url: https://lue.computationalgeography.org/doc/
   dev_url: https://github.com/computationalgeography/lue/
