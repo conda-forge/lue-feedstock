@@ -17,18 +17,12 @@ cmake $SRC_DIR \
     ${CMAKE_ARGS} \
     -D CMAKE_BUILD_TYPE="Release" \
     -D LUE_INSTALL_PYTHON_PACKAGE_DIR="${SP_DIR}/lue" \
-    -D LUE_HAVE_BOOST:BOOL=TRUE \
-    -D LUE_HAVE_FMT:BOOL=TRUE \
-    -D LUE_HAVE_PYBIND11:BOOL=TRUE \
-    -D LUE_HAVE_HDF5:BOOL=TRUE \
-    -D LUE_HAVE_GDAL:BOOL=TRUE \
     -D LUE_HAVE_DOCOPT:BOOL=TRUE \
     -D LUE_HAVE_MS_GSL:BOOL=FALSE \
-    -D LUE_HAVE_NLOHMANN_JSON:BOOL=TRUE \
     -D LUE_DATA_MODEL_WITH_PYTHON_API=TRUE \
     -D LUE_DATA_MODEL_WITH_UTILITIES=TRUE \
-    -D LUE_BUILD_VIEW=FALSE \
-    -D LUE_BUILD_FRAMEWORK=TRUE \
+    -D LUE_BUILD_QA=TRUE \
+    -D LUE_QA_WITH_PYTHON_API=TRUE \
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE \
     -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE \
     -D Python3_EXECUTABLE="${PYTHON}"
@@ -37,6 +31,6 @@ cmake $SRC_DIR \
 cmake --build . --target source/data_model/all source/framework/{core,partitioned_array}/all
 
 # Build remaining targets with fewer cores. Compiling these modules requires more memory.
-cmake --build . --target all --parallel 2
+cmake --build . --target all --parallel 1
 
 cmake --install . --component lue_runtime

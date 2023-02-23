@@ -27,7 +27,7 @@ cmake %SRC_DIR% ^
     -D Python3_EXECUTABLE="%PYTHON%"
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-cmake --build . --target all --parallel 2
+cmake --build . --target all --parallel 1
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 cmake --install . --component lue_runtime
