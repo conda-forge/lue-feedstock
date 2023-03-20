@@ -1,11 +1,11 @@
-About lue
-=========
+About lue-feedstock
+===================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/lue-feedstock/blob/main/LICENSE.txt)
 
 Home: https://lue.computationalgeography.org/
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/lue-feedstock/blob/main/LICENSE.txt)
 
 Summary: LUE scientific database and environmental modelling framework.
 
@@ -24,7 +24,7 @@ group at Utrecht University in the Netherlands. One of the focus areas of this g
 to improve on the concepts and design of numerical simulation frameworks for geographical
 systems, with respect to their functionality and performance.
 
-LUE support both agent-based and field-based modelling of geographical systems, with the
+LUE supports both agent-based and field-based modelling of geographical systems, with the
 support for field-based modelling currently being the most mature.
 
 
