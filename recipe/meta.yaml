@@ -9,6 +9,8 @@ package:
 source:
   url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   sha256: cf9b6caf61a7f286fc473f04045de2eaeae09b05455a34262c97d109b45ef82c
+  patches:
+    - patch/lue-{{ version }}.patch
 
 
 build:
@@ -54,7 +56,7 @@ requirements:
     - hdf5
     - hpx
     - libgdal
-    - matplotlib  # lue.qa
+    - matplotlib-base  # lue.qa
     - {{ pin_compatible('numpy') }}
     - python
     - python-dateutil  # lue.qa
