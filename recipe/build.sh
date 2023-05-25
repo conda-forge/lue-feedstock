@@ -27,10 +27,5 @@ cmake $SRC_DIR \
     -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE \
     -D Python3_EXECUTABLE="${PYTHON}"
 
-# Use parallel build for as many targets as possible, but not for framework/algorithm
-cmake --build . --target source/data_model/all source/framework/{core,partitioned_array}/all
-
-# Build remaining targets with fewer cores. Compiling these modules requires more memory.
-cmake --build . --target all --parallel 1
-
+cmake --build . --target all
 cmake --install . --component lue_runtime

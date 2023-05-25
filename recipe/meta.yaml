@@ -1,4 +1,4 @@
-{% set version = "0.3.6" %}
+{% set version = "0.3.7" %}
 
 
 package:
@@ -9,12 +9,10 @@ package:
 source:
   url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   sha256: cf9b6caf61a7f286fc473f04045de2eaeae09b05455a34262c97d109b45ef82c
-  patches:
-    - patch/lue-{{ version }}.patch
 
 
 build:
-  number: 1
+  number: 0
 
 
 requirements:
@@ -31,7 +29,7 @@ requirements:
     - git
     - conan <2
     - cmake
-    - ninja
+    - ninja                                      # [not win]
 
   host:
     # Section for the target platform. Might not be the same as the build platform!
@@ -39,12 +37,14 @@ requirements:
     - python
     - numpy >1.17
     - boost-cpp
-    - hdf5
+    - hdf5 >=1.10,<1.14
     - hpx
-    - libgdal
+    - libgdal >=3
     - pybind11
     - fmt
+    - docopt  # templatize.py
     - docopt.cpp
+    - jinja2  # templatize.py
     - nlohmann_json
 
   run:
@@ -53,9 +53,9 @@ requirements:
     - docopt  # lue.qa
     - docopt.cpp
     - fmt
-    - hdf5
+    - hdf5 >=1.10,<1.14
     - hpx
-    - libgdal
+    - libgdal >=3
     - matplotlib-base  # lue.qa
     - {{ pin_compatible('numpy') }}
     - python
@@ -67,6 +67,7 @@ test:
     - lue_translate -h
     - lue_validate -h
     - lue_scalability -h                      # [not win]
+    - lue_view -h
 
 
 about:
