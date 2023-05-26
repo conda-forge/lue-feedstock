@@ -4,7 +4,7 @@ set -e
 mkdir build
 cd build
 
-set lue_build_view="TRUE"
+lue_build_view="TRUE"
 
 if [[ "$target_platform" == "osx-64" ]]; then
     export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
@@ -14,7 +14,7 @@ fi
 if [[ "$target_platform" == "osx-arm64" ]]; then
     export CXXFLAGS="${CXXFLAGS} -DTARGET_OS_OSX"
     # Conan fails to build imgui
-    set lue_build_view="FALSE"
+    lue_build_view="FALSE"
 fi
 
 cmake \
