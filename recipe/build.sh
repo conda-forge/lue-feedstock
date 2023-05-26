@@ -4,12 +4,17 @@ set -e
 mkdir build
 cd build
 
+set lue_build_view="TRUE"
+
 if [[ "$target_platform" == "osx-64" ]]; then
     export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+    export CXXFLAGS="${CXXFLAGS} -DTARGET_OS_OSX"
 fi
 
-if [[ "$target_platform" == "osx-64" || "$target_platform" == "osx-arm64" ]]; then
+if [[ "$target_platform" == "osx-arm64" ]]; then
     export CXXFLAGS="${CXXFLAGS} -DTARGET_OS_OSX"
+    # Conan fails to build imgui
+    set lue_build_view="FALSE"
 fi
 
 cmake \
@@ -25,6 +30,7 @@ cmake \
     -D LUE_BUILD_QA=TRUE \
     -D LUE_QA_WITH_PYTHON_API=TRUE \
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE \
+    -D LUE_BUILD_VIEW=$lue_build_view \
     -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE \
     -D Python3_EXECUTABLE="${PYTHON}"
 
