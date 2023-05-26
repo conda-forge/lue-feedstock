@@ -7,10 +7,11 @@ package:
 
 
 source:
-  # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   # url: https://github.com/computationalgeography/lue/releases/download/{{ version }}/lue-{{ version }}.tar.gz
-  url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
-  sha256: e4deb0ea45995b61c331177ab7939c18a696b8a46392ac590e360bef37921a0f
+  # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
+  # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
+  url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
+  sha256: 0015ce756d9af4177118761d642313df1c5a8bb736419d52cbfb593e26611dae
 
 
 build:
@@ -40,11 +41,11 @@ requirements:
     - numpy >1.17
     - boost-cpp
     - hdf5 >=1.10,<1.14
-    - glfw
+    - glfw                                       # [not arm64]
     - hpx
     - libgdal >=3
-    - libvulkan-headers
-    - libvulkan-loader
+    - libvulkan-headers                          # [not arm64]
+    - libvulkan-loader                           # [not arm64]
     - pybind11
     - fmt
     - docopt  # templatize.py
@@ -58,10 +59,10 @@ requirements:
     - docopt  # lue.qa
     - docopt.cpp
     - hdf5 >=1.10,<1.14
-    - glfw
+    - glfw                                       # [not arm64]
     - hpx
     - libgdal >=3
-    - libvulkan-loader
+    - libvulkan-loader                           # [not arm64]
     - matplotlib-base  # lue.qa
     - {{ pin_compatible('numpy') }}
     - python
@@ -72,8 +73,8 @@ test:
   commands:
     - lue_translate -h
     - lue_validate -h
-    - lue_scalability -h                      # [not win]
-    - lue_view -h
+    - lue_scalability -h                         # [not win]
+    - lue_view -h                                # [not arm64]
 
 
 about:
