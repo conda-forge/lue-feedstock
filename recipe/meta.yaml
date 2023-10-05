@@ -15,7 +15,7 @@ source:
 
 
 build:
-  number: 4
+  number: 5
 
 
 requirements:
@@ -39,7 +39,7 @@ requirements:
     # Dependencies required during build phase needed on the host.
     - python
     - numpy
-    - boost-cpp
+    - libboost-headers
     - hdf5
     - glfw                                       # [not arm64]
     - hpx
