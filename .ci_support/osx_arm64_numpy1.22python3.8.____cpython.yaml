@@ -13,7 +13,7 @@ fmt:
 hdf5:
 - 1.14.2
 libgdal:
-- '3.7'
+- '3.8'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
