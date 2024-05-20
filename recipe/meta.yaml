@@ -15,7 +15,7 @@ source:
 
 
 build:
-  number: 5
+  number: 6
 
 
 requirements:
@@ -28,6 +28,7 @@ requirements:
     - numpy                                      # [build_platform != target_platform]
     - pybind11                                   # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - make                                       # [unix]
     - git
     - conan <2
@@ -64,7 +65,6 @@ requirements:
     - libgdal
     - libvulkan-loader                           # [not arm64]
     - matplotlib-base  # lue.qa
-    - {{ pin_compatible('numpy') }}
     - python
     - python-dateutil  # lue.qa
 
