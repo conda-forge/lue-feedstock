@@ -1,4 +1,4 @@
-{% set version = "0.3.7" %}
+{% set version = "0.3.8" %}
 
 
 package:
@@ -10,12 +10,14 @@ source:
   # url: https://github.com/computationalgeography/lue/releases/download/{{ version }}/lue-{{ version }}.tar.gz
   # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
   # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
-  url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 0015ce756d9af4177118761d642313df1c5a8bb736419d52cbfb593e26611dae
+  git_url: https://github.com/computationalgeography/lue.git
+  git_depth: 1  # (Defaults to -1/not shallow)
+  # url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
+  # sha256: TODO 0015ce756d9af4177118761d642313df1c5a8bb736419d52cbfb593e26611dae
 
 
 build:
-  number: 5
+  number: 0
 
 
 requirements:
@@ -30,7 +32,7 @@ requirements:
     - {{ compiler('cxx') }}
     - make                                       # [unix]
     - git
-    - conan <2
+    - conan
     - cmake
     - ninja                                      # [not win]
 
@@ -39,19 +41,20 @@ requirements:
     # Dependencies required during build phase needed on the host.
     - python
     - numpy
-    - libboost-headers
+    - libboost-devel
     - hdf5
-    - glfw                                       # [not arm64]
+    - glfw
     - hpx
     - libgdal
-    - libvulkan-headers                          # [not arm64]
-    - libvulkan-loader                           # [not arm64]
+    - libvulkan-headers
+    - libvulkan-loader
     - pybind11
     - fmt
     - docopt  # templatize.py
     - docopt.cpp
     - jinja2  # templatize.py
     - nlohmann_json
+    - ruamel.yaml  # write_conan_profile.py
 
   run:
     # Dependencies required for using the software.
@@ -59,10 +62,10 @@ requirements:
     - docopt  # lue.qa
     - docopt.cpp
     - hdf5
-    - glfw                                       # [not arm64]
+    - glfw
     - hpx
     - libgdal
-    - libvulkan-loader                           # [not arm64]
+    - libvulkan-loader
     - matplotlib-base  # lue.qa
     - {{ pin_compatible('numpy') }}
     - python
@@ -70,11 +73,18 @@ requirements:
 
 
 test:
+  imports:
+    - lue
+    - lue.data_model
+    - lue.framework
+    - lue.pcraster
+    - lue.qa.scalability
   commands:
     - lue_translate -h
     - lue_validate -h
-    - lue_scalability -h                         # [not win]
-    - lue_view -h                                # [not arm64]
+    - lue_calculate -h
+    - lue_scalability -h
+    - lue_view -h
 
 
 about:
