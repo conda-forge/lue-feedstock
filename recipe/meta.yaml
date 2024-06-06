@@ -19,6 +19,8 @@ source:
 
 build:
   number: 0
+  build:
+    skip: True                                   # [py<39]
 
 
 requirements:

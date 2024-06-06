@@ -15,7 +15,7 @@ elif [[ $target_platform == osx* ]]; then
     lue_preset="lue_release_macos_node"
 fi
 
-cmake -S . -B build %CMAKE_ARGS% \
+cmake -S . -B build $CMAKE_ARGS \
     --preset $lue_preset \
     -G Ninja
     -D LUE_INSTALL_PYTHON_PACKAGE_DIR="${SP_DIR}/lue" \
