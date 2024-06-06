@@ -19,10 +19,8 @@ set CMAKE_GENERATOR_PLATFORM=
 :: was specified.
 set CMAKE_GENERATOR_TOOLSET=
 
-set CMAKE_PREFIX_PATH=build
-
-cmake --preset lue_release_windows_node ^
-    %CMAKE_ARGS% ^
+cmake -S . -B build %CMAKE_ARGS% ^
+    --preset lue_release_windows_node ^
     -D CMAKE_INSTALL_LIBDIR=lib ^
     -D LUE_INSTALL_PYTHON_PACKAGE_DIR="%SP_DIR%/lue" ^
     -D LUE_DATA_MODEL_WITH_PYTHON_API=TRUE ^
@@ -36,7 +34,7 @@ cmake --preset lue_release_windows_node ^
     -D Python_EXECUTABLE="%PYTHON%"
 if errorlevel 1 exit /b 1
 
-cmake --build build --config Release --target all
+cmake --build build --config Release --target all --parallel %CPU_COUNT%
 if errorlevel 1 exit /b 1
 
 cmake --install build --config Release --component lue_runtime
