@@ -17,7 +17,7 @@ fi
 
 cmake -S . -B build $CMAKE_ARGS \
     --preset $lue_preset \
-    -G Ninja
+    -G Ninja \
     -D LUE_INSTALL_PYTHON_PACKAGE_DIR="${SP_DIR}/lue" \
     -D LUE_DATA_MODEL_WITH_PYTHON_API=TRUE \
     -D LUE_DATA_MODEL_WITH_UTILITIES=TRUE \
