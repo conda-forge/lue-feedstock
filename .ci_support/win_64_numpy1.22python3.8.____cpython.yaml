@@ -1,3 +1,5 @@
+c_stdlib:
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
@@ -9,7 +11,7 @@ fmt:
 hdf5:
 - 1.14.3
 libboost_devel:
-- '1.82'
+- '1.84'
 libgdal:
 - '3.8'
 numpy:
