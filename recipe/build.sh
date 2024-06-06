@@ -5,15 +5,18 @@ set -e
 mkdir build
 
 if [[ $target_platform == osx* ]]; then
+    lue_preset="lue_release_linux_node"
+elif [[ $target_platform == osx* ]]; then
     export CXXFLAGS="${CXXFLAGS} -DTARGET_OS_OSX"
 
     if [[ $target_platform == "osx-64" ]]; then
         export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
     fi
+    lue_preset="lue_release_macos_node"
 fi
 
 CMAKE_PREFIX_PATH=build \
-    cmake --preset conan-release \
+    cmake --preset $lue_preset \
         ${CMAKE_ARGS} \
         -D LUE_INSTALL_PYTHON_PACKAGE_DIR="${SP_DIR}/lue" \
         -D LUE_DATA_MODEL_WITH_PYTHON_API=TRUE \

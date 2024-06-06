@@ -3,12 +3,6 @@ echo on
 mkdir build
 if errorlevel 1 exit /b 1
 
-%PYTHON% environment/script/write_conan_profile.py %CXX% host_profile
-if errorlevel 1 exit /b 1
-
-%PYTHON% environment/script/write_conan_profile.py %CXX% build_profile
-if errorlevel 1 exit /b 1
-
 :: Unset CMAKE_GENERATOR_PLATFORM. The platform is already specified in Conan's preset. Otherwise:
 :: Generator
 ::     Ninja
@@ -27,7 +21,7 @@ set CMAKE_GENERATOR_TOOLSET=
 
 set CMAKE_PREFIX_PATH=build
 
-cmake --preset conan-release ^
+cmake --preset lue_release_windows_node ^
     %CMAKE_ARGS% ^
     -D CMAKE_INSTALL_LIBDIR=lib ^
     -D LUE_INSTALL_PYTHON_PACKAGE_DIR="%SP_DIR%/lue" ^
