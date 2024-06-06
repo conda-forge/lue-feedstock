@@ -9,15 +9,6 @@ if errorlevel 1 exit /b 1
 %PYTHON% environment/script/write_conan_profile.py %CXX% build_profile
 if errorlevel 1 exit /b 1
 
-set LUE_CONAN_PACKAGES=imgui
-
-conan install . ^
-    --profile:host=host_profile ^
-    --profile:build=build_profile ^
-    --build=missing ^
-    --output-folder=build
-if errorlevel 1 exit /b 1
-
 :: Unset CMAKE_GENERATOR_PLATFORM. The platform is already specified in Conan's preset. Otherwise:
 :: Generator
 ::     Ninja
@@ -42,7 +33,7 @@ cmake --preset conan-release ^
     -D LUE_INSTALL_PYTHON_PACKAGE_DIR="%SP_DIR%/lue" ^
     -D LUE_DATA_MODEL_WITH_PYTHON_API=TRUE ^
     -D LUE_DATA_MODEL_WITH_UTILITIES=TRUE ^
-    -D LUE_BUILD_VIEW=TRUE ^
+    -D LUE_BUILD_VIEW=FALSE ^
     -D LUE_BUILD_QA=TRUE ^
     -D LUE_QA_WITH_PYTHON_API=TRUE ^
     -D LUE_FRAMEWORK_WITH_IMAGE_LAND=TRUE ^
