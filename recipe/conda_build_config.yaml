@@ -1,4 +1,9 @@
-c_compiler:    # [win]
-- vs2019       # [win]
-cxx_compiler:  # [win]
-- vs2019       # [win]
+# Here we list anything that deviates from the default conda_build_config.yaml
+# https://github.com/conda-forge/conda-forge-pinning-feedstock/blob/main/recipe/conda_build_config.yaml
+
+# We don't support Python 3.8 anymore. Remove this section once Conda doesn't support it anymore as well.
+python:
+  - 3.9.* *_cpython
+  - 3.10.* *_cpython
+  - 3.11.* *_cpython
+  - 3.12.* *_cpython
