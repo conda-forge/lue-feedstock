@@ -19,27 +19,20 @@ source:
 
 build:
   number: 0
-  skip: True                                     # [py<39]
+  skip: True                                     # [py<39 or (osx and x86_64)]
 
 
 requirements:
   build:
-    # Section for the native build platform. Think "build-tools", that run on the native platform,
-    # but output results for the target platform.
-    # Dependencies required during the build phase not needed on the host.
     - python                                     # [build_platform != target_platform]
     - cross-python_{{ target_platform }}         # [build_platform != target_platform]
     - numpy                                      # [build_platform != target_platform]
     - pybind11                                   # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
-    - git                                        # [not win]
-    - cmake
-    - ninja                                      # [not win]
+    - ninja
 
   host:
-    # Section for the target platform. Might not be the same as the build platform!
-    # Dependencies required during build phase needed on the host.
     - python
     - numpy
     - libboost-devel
@@ -54,8 +47,6 @@ requirements:
     - nlohmann_json
 
   run:
-    # Dependencies required for using the software.
-    # Stuff required when using LUE.
     - docopt  # lue.qa
     - docopt.cpp
     - hdf5
