@@ -30,6 +30,7 @@ requirements:
     - pybind11                                   # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
+    - cmake
     - ninja
 
   host:
