@@ -1,0 +1,5 @@
+# Bump compiler version. VSVC 2019 16.0 icw fmt 10 fails (compiler error C2888)
+c_compiler:    # [win]
+- vs2022       # [win]
+cxx_compiler:  # [win]
+- vs2022       # [win]
