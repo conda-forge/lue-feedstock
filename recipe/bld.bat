@@ -1,9 +1,9 @@
-echo on
-
 mkdir build
+pushd build
 if errorlevel 1 exit /b 1
 
-cmake -S . -B build %CMAKE_ARGS% ^
+cmake ^
+    %CMAKE_ARGS% ^
     --preset lue_release_windows_node ^
     -G Ninja ^
     -D CMAKE_INSTALL_LIBDIR=lib ^
@@ -17,6 +17,7 @@ cmake -S . -B build %CMAKE_ARGS% ^
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE ^
     -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE ^
     -D Python_EXECUTABLE="%PYTHON%"
+    ..
 if errorlevel 1 exit /b 1
 
 cmake --build build --config Release --target all --parallel %CPU_COUNT%
