@@ -1,7 +1,13 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '11.0'
+MACOSX_SDK_VERSION:
+- '11.0'
+c_stdlib:
+- macosx_deployment_target
+c_stdlib_version:
+- '11.0'
 channel_sources:
-- conda-forge
+- conda-forge/label/numpy_rc,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -11,13 +17,13 @@ cxx_compiler_version:
 fmt:
 - '10'
 hdf5:
-- 1.14.2
+- 1.14.3
 libgdal:
-- '3.7'
+- '3.8'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
-- '1.22'
+- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
