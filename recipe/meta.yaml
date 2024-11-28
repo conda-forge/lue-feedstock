@@ -1,4 +1,4 @@
-{% set version = "0.3.7" %}
+{% set version = "0.3.9" %}
 
 
 package:
@@ -11,11 +11,11 @@ source:
   # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
   # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 0015ce756d9af4177118761d642313df1c5a8bb736419d52cbfb593e26611dae
+  sha256: 2837de0e04a8dbc55f20d6376755e82163ac4e5542ef17a699cc4a88cd4cc462
 
 
 build:
-  number: 5
+  number: 0
 
 
 requirements:
@@ -28,6 +28,7 @@ requirements:
     - numpy                                      # [build_platform != target_platform]
     - pybind11                                   # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - make                                       # [unix]
     - git
     - conan <2
