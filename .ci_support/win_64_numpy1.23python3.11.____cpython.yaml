@@ -5,11 +5,13 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- vs2022
 fmt:
 - '10'
 hdf5:
 - 1.14.3
+libboost_devel:
+- '1.84'
 libboost_headers:
 - '1.84'
 libgdal:

@@ -18,6 +18,8 @@ fmt:
 - '10'
 hdf5:
 - 1.14.3
+libboost_devel:
+- '1.84'
 libboost_headers:
 - '1.84'
 libgdal:
