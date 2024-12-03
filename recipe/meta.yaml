@@ -1,4 +1,4 @@
-{% set version = "0.3.7" %}
+{% set version = "0.3.9" %}
 
 
 package:
@@ -11,41 +11,32 @@ source:
   # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
   # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 0015ce756d9af4177118761d642313df1c5a8bb736419d52cbfb593e26611dae
+  sha256: 6dfc2c8fd118aaa55047b6c38de93897cddb49d1ba8875e947412c577d5fc8b2
 
 
 build:
-  number: 5
+  number: 0
+  skip: True                                     # [py<310 or (osx and x86_64)]
 
 
 requirements:
   build:
-    # Section for the native build platform. Think "build-tools", that run on the native platform,
-    # but output results for the target platform.
-    # Dependencies required during the build phase not needed on the host.
+    - {{ compiler("cxx") }}
+    - {{ stdlib("c") }}
+    - cmake
+    - ninja
     - python                                     # [build_platform != target_platform]
     - cross-python_{{ target_platform }}         # [build_platform != target_platform]
     - numpy                                      # [build_platform != target_platform]
-    - pybind11                                   # [build_platform != target_platform]
-    - {{ compiler('cxx') }}
-    - make                                       # [unix]
-    - git
-    - conan <2
-    - cmake
-    - ninja                                      # [not win]
 
   host:
-    # Section for the target platform. Might not be the same as the build platform!
-    # Dependencies required during build phase needed on the host.
     - python
     - numpy
+    - libboost-devel
     - libboost-headers
     - hdf5
-    - glfw                                       # [not arm64]
     - hpx
     - libgdal
-    - libvulkan-headers                          # [not arm64]
-    - libvulkan-loader                           # [not arm64]
     - pybind11
     - fmt
     - docopt  # templatize.py
@@ -54,27 +45,28 @@ requirements:
     - nlohmann_json
 
   run:
-    # Dependencies required for using the software.
-    # Stuff required when using LUE.
     - docopt  # lue.qa
     - docopt.cpp
     - hdf5
-    - glfw                                       # [not arm64]
     - hpx
     - libgdal
-    - libvulkan-loader                           # [not arm64]
     - matplotlib-base  # lue.qa
-    - {{ pin_compatible('numpy') }}
     - python
     - python-dateutil  # lue.qa
 
 
 test:
+  imports:
+    - lue
+    - lue.data_model
+    - lue.framework
+    - lue.pcraster
+    - lue.qa.scalability
   commands:
     - lue_translate -h
     - lue_validate -h
-    - lue_scalability -h                         # [not win]
-    - lue_view -h                                # [not arm64]
+    - lue_calculate.py -h
+    - lue_scalability.py -h
 
 
 about:
