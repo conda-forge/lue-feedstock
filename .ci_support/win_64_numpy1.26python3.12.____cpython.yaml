@@ -11,9 +11,9 @@ fmt:
 hdf5:
 - 1.14.3
 libboost_devel:
-- '1.84'
+- '1.86'
 libboost_headers:
-- '1.84'
+- '1.86'
 libgdal:
 - '3.9'
 numpy:
