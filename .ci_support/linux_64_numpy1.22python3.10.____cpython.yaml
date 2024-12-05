@@ -23,7 +23,7 @@ libboost_devel:
 libboost_headers:
 - '1.86'
 libgdal:
-- '3.9'
+- '3.10'
 numpy:
 - '1.22'
 pin_run_as_build:
