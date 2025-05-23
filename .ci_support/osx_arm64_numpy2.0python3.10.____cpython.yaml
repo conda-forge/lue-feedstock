@@ -23,7 +23,7 @@ libboost_devel:
 libboost_headers:
 - '1.86'
 libgdal:
-- '3.10'
+- '3.11'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
