@@ -18,35 +18,32 @@ build:
   number: 0
   skip: true  # [py<310 or (osx and x86_64)]
 
+  ignore_run_exports_from:
+    - libboost-devel
+
 
 requirements:
   build:
-    - {{ compiler("cxx") }}
-    - {{ stdlib("c") }}
-    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - ninja
-    - python                                     # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}         # [build_platform != target_platform]
-    - numpy                                      # [build_platform != target_platform]
 
   host:
-    - python
-    - numpy
-    - libboost-devel
-    - libboost-headers
+    - cxxopts
+    - docopt  # templatize.py
     - hdf5
     - hpx
-    - libgdal
-    - pybind11
-    - fmt
-    - docopt  # templatize.py
-    - docopt.cpp
     - jinja2  # templatize.py
+    - libboost-devel  # Only CMake scripts (BoostConfig.cmake, etc)
+    - libboost-headers  # Only headers
+    - libgdal
     - nlohmann_json
+    - numpy
+    - pybind11
+    - python
 
   run:
     - docopt  # lue.qa
-    - docopt.cpp
     - hdf5
     - hpx
     - libgdal
