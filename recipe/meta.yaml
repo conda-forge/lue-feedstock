@@ -11,7 +11,7 @@ source:
   # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
   # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 2d0c38ca25265a259507419777b2f1389c3ce25def79f1dc6efbc0dfe52ee8aa
+  sha256: 0ec9ac647768fac3b9dde457d2664dd03994f1129e94a1163f226f49f5cdbf30
 
 
 build:
