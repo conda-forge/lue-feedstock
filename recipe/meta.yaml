@@ -15,7 +15,7 @@ source:
 
 
 build:
-  number: 6
+  number: 7
   skip: True                                     # [py<310 or (osx and x86_64)]
 
 
