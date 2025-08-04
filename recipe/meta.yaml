@@ -41,7 +41,7 @@ requirements:
     - jinja2  # templatize.py
     - libboost-devel  # Only CMake scripts (BoostConfig.cmake, etc)
     - libboost-headers  # Only headers
-    - libgdal
+    - libgdal <3.11.0
     - nlohmann_json
     - numpy
     - pybind11
