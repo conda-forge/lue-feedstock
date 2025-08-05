@@ -36,7 +36,7 @@ requirements:
   host:
     - cxxopts
     - docopt  # templatize.py
-    - hpx
+    - hpx =1.11
     - jinja2  # templatize.py
     - libboost-devel  # Only CMake scripts (BoostConfig.cmake, etc)
     - libboost-headers  # Only headers
