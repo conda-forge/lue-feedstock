@@ -18,9 +18,6 @@ build:
   number: 0
   skip: true  # [py<310 or (osx and x86_64)]
 
-  ignore_run_exports_from:
-    - libboost-devel
-
 
 requirements:
   build:
@@ -38,8 +35,6 @@ requirements:
     - docopt  # templatize.py
     - hpx =1.11
     - jinja2  # templatize.py
-    - libboost-devel  # Only CMake scripts (BoostConfig.cmake, etc)
-    - libboost-headers  # Only headers
     - libgdal
     - nlohmann_json
     - numpy
