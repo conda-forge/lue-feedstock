@@ -5,25 +5,19 @@ package:
   name: lue
   version: {{ version }}
 
-
 source:
-  # url: https://github.com/computationalgeography/lue/releases/download/{{ version }}/lue-{{ version }}.tar.gz
-  # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
-  # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
   sha256: a8e998e46f4b9ce39bde965d328ed24f6672c9a238802a30ed24353e9534aa0a
-
 
 build:
   number: 0
   skip: true  # [py<310 or (osx and x86_64)]
 
-
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ stdlib('c') }}
+    - {{ compiler("c") }}
+    - {{ compiler("cxx") }}
+    - {{ stdlib("c") }}
     - cmake
     - ninja
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
@@ -33,8 +27,9 @@ requirements:
   host:
     - cxxopts
     - docopt  # templatize.py
-    - hpx =1.11
+    - hpx
     - jinja2  # templatize.py
+    - libboost-devel
     - libgdal
     - nlohmann_json
     - numpy
@@ -42,13 +37,13 @@ requirements:
     - python
 
   run:
+    # Packages needed for downstream packages that use LUE at:
+    # - build-time: headers, libraries
+    # - runtime: shared libraries, interpreter
+    # Only list packages whose meta.yaml doesn't contain a run_exports already
     - docopt  # lue.qa
-    - hpx
-    - libgdal
     - matplotlib-base  # lue.qa
-    - python
     - python-dateutil  # lue.qa
-
 
 test:
   imports:
@@ -62,7 +57,6 @@ test:
     - lue_validate -h
     - lue_calculate.py -h
     - lue_scalability.py -h
-
 
 about:
   home: https://lue.computationalgeography.org/
@@ -85,7 +79,6 @@ about:
     support for field-based modelling currently being the most mature.
   doc_url: https://lue.computationalgeography.org/doc/
   dev_url: https://github.com/computationalgeography/lue/
-
 
 extra:
   recipe-maintainers:
