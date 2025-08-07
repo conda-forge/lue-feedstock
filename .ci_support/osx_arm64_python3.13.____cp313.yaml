@@ -18,6 +18,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '19'
+libboost_devel:
+- '1.86'
 libgdal:
 - '3.11'
 macos_machine:
