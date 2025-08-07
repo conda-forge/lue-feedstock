@@ -29,6 +29,7 @@ requirements:
     - docopt  # templatize.py
     - hpx
     - jinja2  # templatize.py
+    - libboost-devel
     - libgdal
     - nlohmann_json
     - numpy
