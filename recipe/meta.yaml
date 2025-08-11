@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 9f7c5288dfd8f900621b3a1774b55eceb1ebdbeb87e8c0405645584db2e9a62c
+  sha256: 64e8835214387a4e4079c75f1dca674ad8a8b3d6c1905cc756d4b13d1ef1a11c
 
 build:
   number: 0
