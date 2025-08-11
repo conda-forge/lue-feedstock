@@ -1,59 +1,49 @@
-{% set version = "0.3.9" %}
+{% set version = "0.3.10" %}
 
 
 package:
   name: lue
   version: {{ version }}
 
-
 source:
-  # url: https://github.com/computationalgeography/lue/releases/download/{{ version }}/lue-{{ version }}.tar.gz
-  # url: https://github.com/computationalgeography/lue/archive/refs/tags/{{ version }}.tar.gz
-  # url: https://pcraster.geo.uu.nl/pcraster/packages/src/lue-{{ version }}.tar.bz2
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 6dfc2c8fd118aaa55047b6c38de93897cddb49d1ba8875e947412c577d5fc8b2
-
+  sha256: 64e8835214387a4e4079c75f1dca674ad8a8b3d6c1905cc756d4b13d1ef1a11c
 
 build:
-  number: 6
-  skip: True                                     # [py<310 or (osx and x86_64)]
-
+  number: 0
+  skip: true  # [py<310 or (osx and x86_64)]
 
 requirements:
   build:
+    - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ stdlib("c") }}
     - cmake
     - ninja
-    - python                                     # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}         # [build_platform != target_platform]
-    - numpy                                      # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - python                                 # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
 
   host:
-    - python
-    - numpy
-    - libboost-devel
-    - libboost-headers
-    - hdf5
-    - hpx
-    - libgdal
-    - pybind11
-    - fmt
+    - cxxopts
     - docopt  # templatize.py
-    - docopt.cpp
+    - hpx
     - jinja2  # templatize.py
+    - libgdal
     - nlohmann_json
+    - numpy
+    - pybind11
+    - python
 
   run:
+    # Packages needed for downstream packages that use LUE at:
+    # - build-time: headers, libraries
+    # - runtime: shared libraries, interpreter
+    # Only list packages whose meta.yaml doesn't contain a run_exports already
     - docopt  # lue.qa
-    - docopt.cpp
-    - hdf5
-    - hpx
-    - libgdal
     - matplotlib-base  # lue.qa
-    - python
     - python-dateutil  # lue.qa
-
+    - python
 
 test:
   imports:
@@ -67,7 +57,6 @@ test:
     - lue_validate -h
     - lue_calculate.py -h
     - lue_scalability.py -h
-
 
 about:
   home: https://lue.computationalgeography.org/
@@ -90,7 +79,6 @@ about:
     support for field-based modelling currently being the most mature.
   doc_url: https://lue.computationalgeography.org/doc/
   dev_url: https://github.com/computationalgeography/lue/
-
 
 extra:
   recipe-maintainers:
