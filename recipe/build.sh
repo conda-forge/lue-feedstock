@@ -23,7 +23,6 @@ cmake -S . -B build $CMAKE_ARGS \
     -D LUE_QUALITY_ASSURANCE_WITH_PYTHON_API=TRUE \
     -D LUE_FRAMEWORK_WITH_IMAGE_LAND=FALSE \
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE \
-    -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE \
     -D Python_EXECUTABLE="${PYTHON}"
 
 cmake --build build --config Release --target all --parallel "$CPU_COUNT"
