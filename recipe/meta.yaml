@@ -16,7 +16,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<310 or (osx and x86_64)]
+  skip: true  # [osx and x86_64]
 
 requirements:
   build:
