@@ -16,7 +16,8 @@ cmake -S . -B build %CMAKE_ARGS% ^
     -D Python_EXECUTABLE="%PYTHON%"
 if errorlevel 1 exit /b 1
 
-cmake --build build --config Release --target all --parallel %CPU_COUNT%
+REM Build runs out of memory. Replacing %CPU_COUNT% by 3 (one core less than available)
+cmake --build build --config Release --target all --parallel 3
 if errorlevel 1 exit /b 1
 
 cmake --install build --config Release --component lue_runtime

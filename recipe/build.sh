@@ -4,8 +4,11 @@ set -e
 mkdir build
 
 if [[ $target_platform == linux* ]]; then
+    # The build runs out of memory. Replacing "$CPU_COUNT" by 3 (one core less than available)
+    cpu_count=3
     lue_preset="lue_release_linux_node"
 elif [[ $target_platform == osx* ]]; then
+    cpu_count=$CPU_COUNT
     lue_preset="lue_release_macos_node"
 
     # https://conda-forge.org/docs/maintainer/knowledge_base/#newer-c-features-with-old-sdk
@@ -25,5 +28,5 @@ cmake -S . -B build $CMAKE_ARGS \
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE \
     -D Python_EXECUTABLE="${PYTHON}"
 
-cmake --build build --config Release --target all --parallel "$CPU_COUNT"
+cmake --build build --config Release --target all --parallel $cpu_count
 cmake --install build --config Release --component lue_runtime
