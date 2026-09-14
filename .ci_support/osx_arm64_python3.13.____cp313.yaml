@@ -18,6 +18,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '21'
+github_actions_labels:
+- blacksmith-12vcpu-macos-latest
 libgdal:
 - '3.13'
 macos_machine:
