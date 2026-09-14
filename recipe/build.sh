@@ -3,12 +3,15 @@ set -e
 
 mkdir build
 
+# To prevend the build to run out of memory, we use floor(RAM / 5) cores, instead of $CPU_COUNT
+
 if [[ $target_platform == linux* ]]; then
-    # The build runs out of memory. Replacing "$CPU_COUNT" by 3 (one core less than available)
-    cpu_count=3
+    # 64 / 5 = 12 (instead of 16)
+    cpu_count=12
     lue_preset="lue_release_linux_node"
 elif [[ $target_platform == osx* ]]; then
-    cpu_count=$CPU_COUNT
+    # 48 / 5 = 9 (instead of 12)
+    cpu_count=9
     lue_preset="lue_release_macos_node"
 
     # https://conda-forge.org/docs/maintainer/knowledge_base/#newer-c-features-with-old-sdk
