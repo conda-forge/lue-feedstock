@@ -51,6 +51,7 @@ requirements:
     # - runtime: shared libraries, interpreter
     - docopt-ng  # lue.qa
     - matplotlib-base  # lue.qa
+    - python
     - python-dateutil  # lue.qa
 
 test:
