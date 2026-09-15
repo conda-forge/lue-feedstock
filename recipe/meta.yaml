@@ -25,8 +25,6 @@ requirements:
     - {{ compiler("cxx") }}
     - {{ stdlib("c") }}
     - cmake
-    - docopt-ng  # templatize.py
-    - jinja2  # templatize.py
     - ninja
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - python                                 # [build_platform != target_platform]
@@ -37,7 +35,9 @@ requirements:
     # Any run_exports get implicitly exported to the run section
     # - shared libraries, interpreters
     - cxxopts
+    - docopt-ng  # templatize.py
     - hpx
+    - jinja2  # templatize.py
     - libgdal
     - nlohmann_json
     - numpy
