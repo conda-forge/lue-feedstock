@@ -20,20 +20,24 @@ build:
 
 requirements:
   build:
+    # Packages needed on the build platform, for building LUE
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ stdlib("c") }}
     - cmake
+    - docopt-ng  # templatize.py
+    - jinja2  # templatize.py
     - ninja
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - python                                 # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
 
   host:
+    # Packages needed on the build platform, containing stuff specific to the target platform
+    # Any run_exports get implicitly exported to the run section
+    # - shared libraries, interpreters
     - cxxopts
-    - docopt-ng  # templatize.py
     - hpx
-    - jinja2  # templatize.py
     - libgdal
     - nlohmann_json
     - numpy
@@ -41,13 +45,12 @@ requirements:
     - python
 
   run:
-    # Packages needed for downstream packages that use LUE at:
+    # Packages needed on the runtime platform, for using LUE
+    # Only list packages whose meta.yaml doesn't contain a run_exports already
     # - build-time: headers, libraries
     # - runtime: shared libraries, interpreter
-    # Only list packages whose meta.yaml doesn't contain a run_exports already
     - docopt-ng  # lue.qa
     - matplotlib-base  # lue.qa
-    - python
     - python-dateutil  # lue.qa
 
 test:
