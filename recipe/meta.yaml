@@ -66,7 +66,7 @@ test:
     - lue_translate -h
     - lue_validate -h
     - lue_calculate.py -h                    # [not win]
-    - lue_scalability.py -h
+    - lue_scalability.py -h                  # [not win]
 
 about:
   home: https://lue.computationalgeography.org/
