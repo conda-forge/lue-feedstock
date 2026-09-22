@@ -8,7 +8,7 @@ package:
 source:
   # NOTE: Use these once new version of LUE is actually released
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 136e796486177f6716f28bffc16f1ad4c44bbd4522f412bc23164d137a342383
+  sha256: 15c8ed4d9d777153ca5ea34d77dce8ebc83b1ad26953dfc5a6ce362e6cd7ffad
 
   # NOTE: Use these while preparing for a LUE release
   # git_url: https://github.com/computationalgeography/lue.git
