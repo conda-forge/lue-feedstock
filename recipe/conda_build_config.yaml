@@ -1,0 +1,5 @@
+# https://conda-forge.org/docs/reference/runners/#blacksmithsh
+github_actions_labels:
+    - blacksmith-16vcpu-ubuntu-2404 # [linux and x86_64]
+    - blacksmith-12vcpu-macos-latest # [osx and arm64]
+    - blacksmith-16vcpu-windows-2025 # [win and x86_64]

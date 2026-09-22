@@ -8,6 +8,8 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2022
+github_actions_labels:
+- blacksmith-16vcpu-windows-2025
 libgdal:
 - '3.13'
 numpy:

@@ -3,9 +3,15 @@ set -e
 
 mkdir build
 
+# To prevend the build to run out of memory, we use floor(RAM / 5) cores, instead of $CPU_COUNT
+
 if [[ $target_platform == linux* ]]; then
+    # 64 / 5 = 12 (instead of 16)
+    cpu_count=12
     lue_preset="lue_release_linux_node"
 elif [[ $target_platform == osx* ]]; then
+    # 48 / 5 = 9 (instead of 12)
+    cpu_count=9
     lue_preset="lue_release_macos_node"
 
     # https://conda-forge.org/docs/maintainer/knowledge_base/#newer-c-features-with-old-sdk
@@ -23,8 +29,7 @@ cmake -S . -B build $CMAKE_ARGS \
     -D LUE_QUALITY_ASSURANCE_WITH_PYTHON_API=TRUE \
     -D LUE_FRAMEWORK_WITH_IMAGE_LAND=FALSE \
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE \
-    -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE \
     -D Python_EXECUTABLE="${PYTHON}"
 
-cmake --build build --config Release --target all --parallel "$CPU_COUNT"
+cmake --build build --config Release --target all --parallel $cpu_count
 cmake --install build --config Release --component lue_runtime

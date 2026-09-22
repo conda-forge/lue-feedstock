@@ -1,4 +1,4 @@
-{% set version = "0.3.10" %}
+{% set version = "0.3.11" %}
 
 
 package:
@@ -6,15 +6,21 @@ package:
   version: {{ version }}
 
 source:
+  # NOTE: Use these once new version of LUE is actually released
   url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 64e8835214387a4e4079c75f1dca674ad8a8b3d6c1905cc756d4b13d1ef1a11c
+  sha256: 6cc8b255543b979c877d265435ed1134d74dd124038c471c3c742c4955054ab1
+
+  # NOTE: Use these while preparing for a LUE release
+  # git_url: https://github.com/computationalgeography/lue.git
+  # git_depth: 1
 
 build:
-  number: 3
-  skip: true  # [py<310 or (osx and x86_64)]
+  number: 0
+  skip: true  # [osx and x86_64]
 
 requirements:
   build:
+    # Packages needed on the build platform, for building LUE
     - {{ compiler("c") }}
     - {{ compiler("cxx") }}
     - {{ stdlib("c") }}
@@ -25,8 +31,11 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
 
   host:
+    # Packages needed on the build platform, containing stuff specific to the target platform
+    # Any run_exports get implicitly exported to the run section
+    # - shared libraries, interpreters
     - cxxopts
-    - docopt  # templatize.py
+    - docopt-ng  # templatize.py
     - hpx
     - jinja2  # templatize.py
     - libgdal
@@ -36,27 +45,28 @@ requirements:
     - python
 
   run:
-    # Packages needed for downstream packages that use LUE at:
+    # Packages needed on the runtime platform, for using LUE
+    # Only list packages whose meta.yaml doesn't contain a run_exports already
     # - build-time: headers, libraries
     # - runtime: shared libraries, interpreter
-    # Only list packages whose meta.yaml doesn't contain a run_exports already
-    - docopt  # lue.qa
+    - docopt-ng  # lue.qa
     - matplotlib-base  # lue.qa
-    - python-dateutil  # lue.qa
     - python
+    - python-dateutil  # lue.qa
 
 test:
   imports:
     - lue
     - lue.data_model
     - lue.framework
+    - lue.framework_x
     - lue.pcraster
     - lue.qa.scalability
   commands:
     - lue_translate -h
     - lue_validate -h
-    - lue_calculate.py -h
-    - lue_scalability.py -h
+    - lue_calculate.py -h                    # [not win]
+    - lue_scalability.py -h                  # [not win]
 
 about:
   home: https://lue.computationalgeography.org/

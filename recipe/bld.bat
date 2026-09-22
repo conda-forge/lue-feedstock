@@ -13,11 +13,12 @@ cmake -S . -B build %CMAKE_ARGS% ^
     -D LUE_QUALITY_ASSURANCE_WITH_PYTHON_API=TRUE ^
     -D LUE_FRAMEWORK_WITH_IMAGE_LAND=FALSE ^
     -D LUE_FRAMEWORK_WITH_PYTHON_API=TRUE ^
-    -D HPX_IGNORE_COMPILER_COMPATIBILITY=TRUE ^
     -D Python_EXECUTABLE="%PYTHON%"
 if errorlevel 1 exit /b 1
 
-cmake --build build --config Release --target all --parallel %CPU_COUNT%
+REM To prevend the build to run out of memory, we use floor(RAM / 5GB) cores, instead of $CPU_COUNT
+REM 56 / 5 = 10 (instead of 16)
+cmake --build build --config Release --target all --parallel 10
 if errorlevel 1 exit /b 1
 
 cmake --install build --config Release --component lue_runtime
