@@ -70,6 +70,18 @@ jobs:
             resize_partitions: False
             runs_on: ['blacksmith-16vcpu-ubuntu-2404']
             tools_install_dir: ~/miniforge3
+          - CONFIG: linux_64_python3.15.____cp315
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['blacksmith-16vcpu-ubuntu-2404']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_arm64_python3.11.____cpython
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
@@ -104,6 +116,17 @@ jobs:
             runs_on: ['blacksmith-12vcpu-macos-latest']
             tools_install_dir: ~/miniforge3
           - CONFIG: osx_arm64_python3.14.____cp314
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
+            os: macos
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['blacksmith-12vcpu-macos-latest']
+            tools_install_dir: ~/miniforge3
+          - CONFIG: osx_arm64_python3.15.____cp315
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_workspace_dir: ~/miniforge3/conda-bld
@@ -151,6 +174,18 @@ jobs:
             runs_on: ['blacksmith-16vcpu-windows-2025']
             tools_install_dir: C:\Miniforge
           - CONFIG: win_64_python3.14.____cp314
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_platform: win-64
+            build_workspace_dir: C:\\bld\\
+            docker_run_args: 
+            free_disk_space: skip
+            os: windows
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['blacksmith-16vcpu-windows-2025']
+            tools_install_dir: C:\Miniforge
+          - CONFIG: win_64_python3.15.____cp315
             STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
             build_platform: win-64
