@@ -1,49 +1,52 @@
-{% set version = "0.3.11" %}
+schema_version: 1
 
+context:
+  version: "0.3.11"
 
 package:
   name: lue
-  version: {{ version }}
+  version: ${{ version }}
 
 source:
   # NOTE: Use these once new version of LUE is actually released
-  url: https://lue.computationalgeography.org/download/lue-{{ version }}.tar.bz2
-  sha256: 6cc8b255543b979c877d265435ed1134d74dd124038c471c3c742c4955054ab1
-
   # NOTE: Use these while preparing for a LUE release
   # git_url: https://github.com/computationalgeography/lue.git
   # git_depth: 1
+  url: https://lue.computationalgeography.org/download/lue-${{ version }}.tar.bz2
+  sha256: 6cc8b255543b979c877d265435ed1134d74dd124038c471c3c742c4955054ab1
 
 build:
-  number: 0
-  skip: true  # [osx and x86_64]
+  number: 1
+  skip: osx and x86_64
 
 requirements:
   build:
     # Packages needed on the build platform, for building LUE
-    - {{ compiler("c") }}
-    - {{ compiler("cxx") }}
-    - {{ stdlib("c") }}
+    - ${{ compiler("c") }}
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
     - cmake
     - ninja
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - python                                 # [build_platform != target_platform]
-    - numpy                                  # [build_platform != target_platform]
-
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: numpy
   host:
     # Packages needed on the build platform, containing stuff specific to the target platform
     # Any run_exports get implicitly exported to the run section
     # - shared libraries, interpreters
     - cxxopts
     - docopt-ng  # templatize.py
-    - hpx
+    - hdf5
+    - hpx <2.0.0
     - jinja2  # templatize.py
     - libgdal
     - nlohmann_json
     - numpy
     - pybind11
     - python
-
   run:
     # Packages needed on the runtime platform, for using LUE
     # Only list packages whose meta.yaml doesn't contain a run_exports already
@@ -54,22 +57,25 @@ requirements:
     - python
     - python-dateutil  # lue.qa
 
-test:
-  imports:
-    - lue
-    - lue.data_model
-    - lue.framework
-    - lue.framework_x
-    - lue.pcraster
-    - lue.qa.scalability
-  commands:
-    - lue_translate -h
-    - lue_validate -h
-    - lue_calculate.py -h                    # [not win]
-    - lue_scalability.py -h                  # [not win]
+tests:
+  - python:
+      imports:
+        - lue
+        - lue.data_model
+        - lue.framework
+        - lue.framework_x
+        - lue.pcraster
+        - lue.qa.scalability
+      pip_check: false
+  - script:
+      - lue_translate -h
+      - lue_validate -h
+      - if: not win
+        then: lue_calculate.py -h
+      - if: not win
+        then: lue_scalability.py -h
 
 about:
-  home: https://lue.computationalgeography.org/
   license: MIT
   license_file: LICENSE.txt
   summary: LUE scientific database and environmental modelling framework.
@@ -87,8 +93,9 @@ about:
 
     LUE supports both agent-based and field-based modelling of geographical systems, with the
     support for field-based modelling currently being the most mature.
-  doc_url: https://lue.computationalgeography.org/doc/
-  dev_url: https://github.com/computationalgeography/lue/
+  homepage: https://lue.computationalgeography.org/
+  repository: https://github.com/computationalgeography/lue/
+  documentation: https://lue.computationalgeography.org/doc/
 
 extra:
   recipe-maintainers:
