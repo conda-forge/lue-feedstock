@@ -10,6 +10,8 @@ cxx_compiler:
 - vs2022
 github_actions_labels:
 - blacksmith-16vcpu-windows-2025
+hdf5:
+- '2'
 libgdal:
 - '3.13'
 numpy:
@@ -19,6 +21,6 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.14.* *_cp314
+- 3.11.* *_cpython
 target_platform:
 - win-64
