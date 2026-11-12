@@ -20,6 +20,8 @@ docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma10
 github_actions_labels:
 - blacksmith-16vcpu-ubuntu-2404
+hdf5:
+- 1.14.6
 libgdal:
 - '3.13'
 numpy:
@@ -29,7 +31,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.14.* *_cp314
+- 3.13.* *_cp313
 target_platform:
 - linux-64
 zip_keys:
